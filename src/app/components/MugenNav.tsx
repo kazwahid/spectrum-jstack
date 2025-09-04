@@ -14,14 +14,7 @@ const MugenNav = () => {
 
   const navVariants = {
     hidden: { opacity: 0, y: -20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    },
+    visible: { opacity: 1, y: 0 }
   }
 
   const hamburgerVariants = {
@@ -50,6 +43,7 @@ const MugenNav = () => {
         variants={navVariants}
         initial="hidden"
         animate="visible"
+        transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
         className="mugen-nav"
       >
         {/* Left - SPECTRUM */}

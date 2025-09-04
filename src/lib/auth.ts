@@ -10,7 +10,6 @@ import bcrypt from "bcryptjs"
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: DrizzleAdapter(db),
-  allowDangerousEmailAccountLinking: true,
   providers: [
     Google({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -33,7 +32,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
         try {
           // Find user in database
-          const user = await db.select().from(users).where(eq(users.email, credentials.email)).limit(1)
+          const user = await db.select().from(users).where(eq(users.email, credentials.email as string)).limit(1)
           
           if (user.length === 0) {
             return null
@@ -41,13 +40,17 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
           const foundUser = user[0]
           
+          if (!foundUser) {
+            return null
+          }
+          
           // Check if user has a password (not OAuth user)
           if (!foundUser.password) {
             return null
           }
 
           // Verify password
-          const isValid = await bcrypt.compare(credentials.password, foundUser.password)
+          const isValid = await bcrypt.compare(credentials.password as string, foundUser.password)
           
           if (!isValid) {
             return null

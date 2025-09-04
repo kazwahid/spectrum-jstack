@@ -1,7 +1,7 @@
 import { z } from "zod"
 import { eq } from "drizzle-orm"
 import bcrypt from "bcryptjs"
-import { publicProcedure } from "../jstack"
+import { j, publicProcedure } from "../jstack"
 import { users } from "../db/schema"
 
 const signUpSchema = z.object({
@@ -15,11 +15,11 @@ const signInSchema = z.object({
   password: z.string().min(1, "Password is required"),
 })
 
-export const authRouter = publicProcedure
-  .router({
-    signUp: publicProcedure
-      .input(signUpSchema)
-      .mutation(async ({ input, db }) => {
+export const authRouter = j.router({
+  signUp: publicProcedure
+    .input(signUpSchema)
+    .mutation(async ({ input, ctx, c }) => {
+      const { db } = ctx
         try {
           // Check if user already exists
           const existingUser = await db.query.users.findFirst({
@@ -40,22 +40,23 @@ export const authRouter = publicProcedure
             password: hashedPassword,
           }).returning()
 
-          return {
+          return c.superjson({
             success: true,
             user: {
               id: newUser.id,
               email: newUser.email,
               name: newUser.name,
             }
-          }
+          })
         } catch (error) {
           throw new Error(error instanceof Error ? error.message : "Failed to create account")
         }
       }),
 
-    signIn: publicProcedure
-      .input(signInSchema)
-      .mutation(async ({ input, db }) => {
+  signIn: publicProcedure
+    .input(signInSchema)
+    .mutation(async ({ input, ctx, c }) => {
+      const { db } = ctx
         try {
           // Find user
           const user = await db.query.users.findFirst({
@@ -73,30 +74,31 @@ export const authRouter = publicProcedure
             throw new Error("Invalid email or password")
           }
 
-          return {
+          return c.superjson({
             success: true,
             user: {
               id: user.id,
               email: user.email,
               name: user.name,
             }
-          }
+          })
         } catch (error) {
           throw new Error(error instanceof Error ? error.message : "Failed to sign in")
         }
       }),
 
-    checkEmail: publicProcedure
-      .input(z.object({ email: z.string().email() }))
-      .query(async ({ input, db }) => {
-        const user = await db.query.users.findFirst({
-          where: eq(users.email, input.email)
-        })
+  checkEmail: publicProcedure
+    .input(z.object({ email: z.string().email() }))
+    .query(async ({ input, ctx, c }) => {
+      const { db } = ctx
+      const user = await db.query.users.findFirst({
+        where: eq(users.email, input.email)
+      })
 
-        return {
-          exists: !!user
-        }
-      }),
-  })
+      return c.superjson({
+        exists: !!user
+      })
+    }),
+})
 
 
