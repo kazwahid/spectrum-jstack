@@ -1,0 +1,1535 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/* Design System Variables */
+:root {
+  /* Colors */
+  --color-primary: #ffffff;
+  --color-secondary: #a1a1aa;
+  --color-accent: #8b5cf6;
+  --color-accent-blue: #3b82f6;
+  --color-accent-cyan: #06b6d4;
+  --color-accent-green: #10b981;
+  --color-background: #000000;
+  --color-surface: rgba(255, 255, 255, 0.05);
+  --color-border: rgba(255, 255, 255, 0.1);
+  
+  /* Typography */
+  --font-primary: 'Geist', 'Geist Placeholder', sans-serif;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease-out;
+  --transition-normal: 0.3s ease-out;
+  --transition-slow: 0.5s ease-out;
+  --transition-bounce: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--color-background);
+  color: var(--color-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Typography Classes */
+.font-display {
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-black);
+  letter-spacing: -0.02em;
+}
+
+.font-body {
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-regular);
+}
+
+.font-caption {
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Text Sizes */
+.text-display-2xl {
+  font-size: 4.5rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.text-display-xl {
+  font-size: 3.75rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.text-display-lg {
+  font-size: 3rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.text-display-md {
+  font-size: 2.25rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.text-body-lg {
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+.text-body-md {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.text-body-sm {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.text-caption {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Interactive Elements */
+.interactive-hover {
+  transition: all var(--transition-normal);
+  cursor: pointer;
+}
+
+.interactive-hover:hover {
+  transform: translateY(-2px);
+  color: var(--color-primary);
+}
+
+.interactive-scale {
+  transition: transform var(--transition-fast);
+}
+
+.interactive-scale:hover {
+  transform: scale(1.05);
+}
+
+.interactive-scale:active {
+  transform: scale(0.95);
+}
+
+/* Mesh Gradient Background */
+.mesh-gradient {
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+    var(--color-background);
+}
+
+.mesh-gradient-intense {
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(16, 185, 129, 0.2) 0%, transparent 50%),
+    var(--color-background);
+}
+
+/* Noise Overlay */
+.noise-overlay {
+  position: relative;
+}
+
+.noise-overlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0);
+  background-size: 20px 20px;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* Glass Effect */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Button Styles */
+.btn-primary {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-medium);
+  transition: all var(--transition-normal);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left var(--transition-slow);
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Animation Classes */
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInFromRight 0.6s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInFromLeft 0.6s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.5s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease-in-out infinite;
+}
+
+/* Micro-interactions */
+.hover-lift {
+  transition: transform var(--transition-normal);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+}
+
+.hover-glow {
+  transition: box-shadow var(--transition-normal);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+}
+
+.hover-scale {
+  transition: transform var(--transition-fast);
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-scale:active {
+  transform: scale(0.95);
+}
+
+/* Text animations */
+.text-reveal {
+  overflow: hidden;
+}
+
+.text-reveal span {
+  display: inline-block;
+  animation: slideInFromLeft 0.8s ease-out forwards;
+  animation-delay: calc(var(--delay, 0) * 0.1s);
+}
+
+/* Loading animations */
+.loading-dots {
+  display: inline-flex;
+  gap: 0.25rem;
+}
+
+.loading-dots span {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: currentColor;
+  animation: pulse 1.5s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.2s);
+}
+
+/* Scroll animations */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Parallax */
+.parallax {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-secondary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .text-display-2xl {
+    font-size: 3rem;
+  }
+  
+  .text-display-xl {
+    font-size: 2.5rem;
+  }
+  
+  .text-display-lg {
+    font-size: 2rem;
+  }
+  
+  .text-display-md {
+    font-size: 1.75rem;
+  }
+}
+
+/* Import Inter font for ultra-bold typography */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/* Mugen Studio Inspired Design System */
+:root {
+  /* Dark Theme Colors */
+  --mugen-bg-primary: #000000;
+  --mugen-bg-secondary: #0a0a0a;
+  --mugen-bg-overlay: rgba(0, 0, 0, 0.8);
+  
+  /* Text Colors */
+  --mugen-text-primary: #ffffff;
+  --mugen-text-secondary: #a1a1aa;
+  --mugen-text-muted: #71717a;
+  --mugen-text-accent: #f5f5f5;
+  
+  /* Border Colors */
+  --mugen-border: #1a1a1a;
+  --mugen-border-hover: #2a2a2a;
+  
+  /* Animation Variables */
+  --mugen-transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --mugen-transition-fast: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--mugen-bg-primary);
+  color: var(--mugen-text-primary);
+  line-height: 1.2;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Typography Classes */
+.font-display {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+}
+
+.font-display-medium {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.font-body {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.font-caption {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+}
+
+/* Ultra-bold heading styles */
+.heading-mega {
+  font-size: clamp(4rem, 12vw, 12rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.85;
+  text-transform: uppercase;
+}
+
+.heading-large {
+  font-size: clamp(2rem, 6vw, 6rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+}
+
+/* Noise texture overlay */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  z-index: 1;
+}
+
+/* Glass effect for overlays */
+.glass-overlay {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Subtle glow effects */
+.glow-hover {
+  transition: var(--mugen-transition);
+}
+
+.glow-hover:hover {
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+/* Button styles */
+.btn-minimal {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--mugen-border);
+  background: transparent;
+  color: var(--mugen-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  transition: var(--mugen-transition);
+  cursor: pointer;
+}
+
+.btn-minimal:hover {
+  border-color: var(--mugen-border-hover);
+  color: var(--mugen-text-primary);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Navigation styles */
+.nav-link {
+  color: var(--mugen-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  transition: var(--mugen-transition);
+  text-decoration: none;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: var(--mugen-text-primary);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--mugen-text-primary);
+  transition: width var(--mugen-transition);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Social icon styles */
+.social-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--mugen-text-muted);
+  transition: var(--mugen-transition);
+  cursor: pointer;
+}
+
+.social-icon:hover {
+  color: var(--mugen-text-primary);
+  transform: translateY(-1px);
+}
+
+/* Mobile menu overlay */
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--mugen-bg-primary);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-menu-item {
+  font-size: clamp(2rem, 8vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--mugen-text-primary);
+  text-decoration: none;
+  transition: var(--mugen-transition);
+  display: block;
+  margin: 1rem 0;
+}
+
+.mobile-menu-item:hover {
+  color: var(--mugen-text-secondary);
+  transform: translateX(10px);
+}
+
+/* Advanced Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInFromLeft 0.8s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInFromRight 0.8s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.6s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  background-size: 200px 100%;
+  animation: shimmer 2s infinite;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+
+/* Micro-interactions */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+}
+
+.hover-glow {
+  transition: box-shadow 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+}
+
+.hover-scale {
+  transition: transform 0.2s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-rotate {
+  transition: transform 0.3s ease;
+}
+
+.hover-rotate:hover {
+  transform: rotate(5deg);
+}
+
+/* Text animations */
+.text-reveal {
+  overflow: hidden;
+}
+
+.text-reveal span {
+  display: inline-block;
+  animation: slideInFromLeft 0.8s ease-out forwards;
+  animation-delay: calc(var(--delay, 0) * 0.1s);
+}
+
+/* Loading states */
+.loading-skeleton {
+  background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Scroll-triggered animations */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Parallax effects */
+.parallax-slow {
+  transform: translateY(var(--scroll, 0));
+  transition: transform 0.1s ease-out;
+}
+
+.parallax-fast {
+  transform: translateY(calc(var(--scroll, 0) * 0.5));
+  transition: transform 0.1s ease-out;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 1px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--mugen-border);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--mugen-border-hover);
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+  .heading-mega {
+    font-size: clamp(3rem, 15vw, 8rem);
+  }
+  
+  .heading-large {
+    font-size: clamp(1.5rem, 8vw, 4rem);
+  }
+}
+
+/* Mobile-specific styles */
+@media (max-width: 640px) {
+  body {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  
+  .mugen-bottom-bar {
+    bottom: 16px;
+    padding: 0 16px;
+  }
+  
+  .mugen-notification-item {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+  
+  .mugen-hamburger {
+    width: 24px;
+    height: 18px;
+  }
+  
+  .mugen-hamburger-line {
+    height: 1.5px;
+  }
+  
+  /* Ensure hero section is scrollable on mobile */
+  .mugen-hero-section {
+    min-height: 100vh;
+    height: auto;
+  }
+}
+
+/* Touch-friendly interactions for mobile */
+@media (hover: none) and (pointer: coarse) {
+  .mugen-interactive:hover {
+    transform: none;
+  }
+  
+  .group-hover\:scale-110:hover {
+    transform: scale(1.05);
+  }
+  
+  .group-hover\:translate-x-0\.5:hover {
+    transform: translateX(0.25rem);
+  }
+}
+
+/* MUGEN STUDIO EXACT RECREATION STYLES */
+
+/* Modern Enhanced Typography System */
+.mugen-hero-text {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: clamp(8rem, 18vw, 18rem);
+  line-height: 0.75;
+  letter-spacing: -0.06em;
+  color: #ffffff;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 10;
+  margin: 0;
+  padding: 0;
+  text-shadow: 0 0 60px rgba(255, 255, 255, 0.15);
+  background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 50%, #ffffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.mugen-hero-text-overlap {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: clamp(8rem, 18vw, 18rem);
+  line-height: 0.75;
+  letter-spacing: -0.06em;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  position: relative;
+  z-index: 9;
+  margin: 0;
+  padding: 0;
+  text-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
+  margin-top: -2rem;
+}
+
+/* Exact Mugen Mesh Background System */
+.mugen-mesh-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.mugen-mesh-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(26, 26, 26, 0.9) 0%, transparent 60%),
+    radial-gradient(circle at 80% 20%, rgba(26, 26, 26, 0.7) 0%, transparent 60%),
+    radial-gradient(circle at 40% 80%, rgba(26, 26, 26, 0.5) 0%, transparent 60%),
+    radial-gradient(circle at 60% 30%, rgba(26, 26, 26, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 10% 90%, rgba(26, 26, 26, 0.2) 0%, transparent 70%),
+    radial-gradient(circle at 90% 70%, rgba(26, 26, 26, 0.1) 0%, transparent 80%);
+  z-index: 2;
+  animation: mugenMeshShift 12s ease-in-out infinite, mugenMeshPulse 6s ease-in-out infinite, mugenMeshFloat 20s ease-in-out infinite;
+  pointer-events: none;
+  filter: blur(0.5px);
+}
+
+.mugen-geometric-shapes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.mugen-triangle {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  opacity: 0.03;
+  background: 
+    linear-gradient(45deg, 
+      rgba(255, 255, 255, 0.05) 0%, 
+      rgba(255, 255, 255, 0.02) 50%, 
+      rgba(255, 255, 255, 0.05) 100%
+    );
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  animation: mugenFloat 60s ease-in-out infinite;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: 0s;
+  filter: blur(2px);
+}
+
+.mugen-grain-texture {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.08;
+  z-index: 5;
+  pointer-events: none;
+  animation: mugenGrainShift 8s ease-in-out infinite;
+}
+
+.mugen-prismatic-rays {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(45deg, transparent 20%, rgba(255, 255, 255, 0.01) 50%, transparent 80%),
+    linear-gradient(-45deg, transparent 20%, rgba(255, 255, 255, 0.005) 50%, transparent 80%),
+    linear-gradient(90deg, transparent 20%, rgba(255, 255, 255, 0.005) 50%, transparent 80%);
+  z-index: 6;
+  animation: mugenPrismaticShift 15s ease-in-out infinite;
+  pointer-events: none;
+  filter: blur(1px);
+}
+
+/* Modern Enhanced Card Styles */
+.mugen-card {
+  width: 340px;
+  background: rgba(15, 15, 15, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 32px;
+  position: relative;
+  z-index: 20;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(30px);
+  overflow: hidden;
+}
+
+.mugen-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.mugen-card:hover {
+  transform: translateY(-16px) scale(1.02);
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.7);
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(15, 15, 15, 0.95);
+}
+
+.mugen-card:hover::before {
+  opacity: 1;
+}
+
+.mugen-card-role {
+  font-family: 'Geist', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.mugen-card-title {
+  font-family: 'Geist', sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  color: #ffffff;
+  margin-bottom: 24px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.mugen-card-button {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  padding: 16px 28px;
+  border-radius: 12px;
+  font-family: 'Geist', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.mugen-card-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+.mugen-card-button:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+}
+
+.mugen-card-button:hover::before {
+  left: 100%;
+}
+
+/* Mugen Navigation */
+.mugen-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 24px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  backdrop-filter: none;
+  border-bottom: none;
+}
+
+.mugen-nav-left {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.mugen-nav-center {
+  font-family: 'Geist', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.01em;
+}
+
+.mugen-nav-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease-out;
+}
+
+.mugen-nav-profile:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+.mugen-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.mugen-nav-work {
+  font-family: 'Geist', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: all 0.3s ease-out;
+}
+
+.mugen-nav-work:hover {
+  color: #ffffff;
+}
+
+.mugen-hamburger {
+  width: 24px;
+  height: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+
+.mugen-hamburger:hover {
+  opacity: 0.7;
+}
+
+.mugen-hamburger-line {
+  width: 100%;
+  height: 2px;
+  background: #ffffff;
+  transition: all 0.3s ease-out;
+}
+
+.mugen-hamburger:hover .mugen-hamburger-line {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* Mugen Bottom Notification Bar */
+.mugen-bottom-bar {
+  position: fixed;
+  bottom: 24px;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 0 32px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.mugen-notification-item {
+  background: rgba(26, 26, 26, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-family: 'Geist', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  transition: all 0.3s ease-out;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+}
+
+.mugen-notification-item:hover {
+  background: rgba(26, 26, 26, 0.9);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Mugen Animations */
+@keyframes mugenFloat {
+  0%, 100% {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+  }
+  25% {
+    transform: translate(-50%, -50%) rotate(90deg) scale(1.1);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(180deg) scale(0.9);
+  }
+  75% {
+    transform: translate(-50%, -50%) rotate(270deg) scale(1.05);
+  }
+}
+
+@keyframes mugenSpectrumRotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+    filter: blur(1px) hue-rotate(0deg);
+  }
+  25% {
+    transform: translate(-50%, -50%) rotate(90deg) scale(1.05);
+    filter: blur(1px) hue-rotate(90deg);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(180deg) scale(1.1);
+    filter: blur(1px) hue-rotate(180deg);
+  }
+  75% {
+    transform: translate(-50%, -50%) rotate(270deg) scale(1.05);
+    filter: blur(1px) hue-rotate(270deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg) scale(1);
+    filter: blur(1px) hue-rotate(360deg);
+  }
+}
+
+@keyframes mugenPrismaticShift {
+  0%, 100% {
+    opacity: 0.02;
+    transform: translateX(0px) translateY(0px) rotate(0deg);
+  }
+  25% {
+    opacity: 0.04;
+    transform: translateX(5px) translateY(-3px) rotate(1deg);
+  }
+  50% {
+    opacity: 0.03;
+    transform: translateX(-3px) translateY(5px) rotate(0deg);
+  }
+  75% {
+    opacity: 0.05;
+    transform: translateX(3px) translateY(-2px) rotate(-1deg);
+  }
+}
+
+@keyframes mugenRayPulse {
+  0%, 100% {
+    opacity: 0.6;
+    filter: blur(0.5px) hue-rotate(0deg);
+  }
+  33% {
+    opacity: 0.8;
+    filter: blur(0.8px) hue-rotate(120deg);
+  }
+  66% {
+    opacity: 0.7;
+    filter: blur(1px) hue-rotate(240deg);
+  }
+}
+
+@keyframes mugenMeshShift {
+  0% {
+    background-position: 0% 0%, 100% 0%, 0% 100%, 100% 100%, 0% 0%, 100% 100%;
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    background-position: 100% 0%, 0% 100%, 100% 0%, 0% 100%, 100% 0%, 0% 100%;
+    transform: scale(1.02) rotate(1deg);
+  }
+  50% {
+    background-position: 100% 100%, 0% 100%, 100% 0%, 0% 0%, 100% 100%, 0% 0%;
+    transform: scale(1.05) rotate(0deg);
+  }
+  75% {
+    background-position: 0% 100%, 100% 0%, 0% 0%, 100% 100%, 0% 100%, 100% 0%;
+    transform: scale(1.02) rotate(-1deg);
+  }
+  100% {
+    background-position: 0% 0%, 100% 0%, 0% 100%, 100% 100%, 0% 0%, 100% 100%;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes mugenMeshPulse {
+  0%, 100% {
+    opacity: 0.6;
+    filter: blur(0.5px);
+  }
+  25% {
+    opacity: 0.8;
+    filter: blur(0.8px);
+  }
+  50% {
+    opacity: 1;
+    filter: blur(1px);
+  }
+  75% {
+    opacity: 0.7;
+    filter: blur(0.6px);
+  }
+}
+
+@keyframes mugenMeshFloat {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  25% {
+    transform: translateY(-10px) scale(1.02);
+  }
+  50% {
+    transform: translateY(-5px) scale(1.05);
+  }
+  75% {
+    transform: translateY(-15px) scale(1.03);
+  }
+}
+
+@keyframes mugenGrainShift {
+  0%, 100% {
+    opacity: 0.08;
+    transform: translateX(0px) translateY(0px);
+  }
+  25% {
+    opacity: 0.12;
+    transform: translateX(2px) translateY(-1px);
+  }
+  50% {
+    opacity: 0.06;
+    transform: translateX(-1px) translateY(2px);
+  }
+  75% {
+    opacity: 0.10;
+    transform: translateX(1px) translateY(-1px);
+  }
+}
+
+@keyframes mugenTextGlow {
+  0%, 100% {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    text-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+  }
+}
+
+.mugen-text-glow {
+  animation: mugenTextGlow 4s ease-in-out infinite;
+}
+
+/* Mugen Parallax Effects */
+.mugen-parallax-slow {
+  transform: translateY(calc(var(--scroll, 0) * 0.3px));
+  transition: transform 0.1s ease-out;
+}
+
+.mugen-parallax-fast {
+  transform: translateY(calc(var(--scroll, 0) * 0.6px));
+  transition: transform 0.1s ease-out;
+}
+
+/* Mugen Interactive States */
+.mugen-interactive {
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+
+.mugen-interactive:hover {
+  transform: translateY(-2px);
+}
+
+.mugen-interactive:active {
+  transform: translateY(0px);
+}
+
+/* Spectrum Gradient Accents */
+.mugen-interactive {
+  position: relative;
+  overflow: hidden;
+}
+
+.mugen-interactive::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 0, 150, 0.1), rgba(0, 255, 255, 0.1), transparent);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+.mugen-interactive:hover::before {
+  left: 100%;
+}
+
+.spectrum-gradient {
+  background: linear-gradient(135deg, #ff0096, #00ffff, #ff0096);
+  background-size: 200% 200%;
+  animation: spectrumShift 3s ease-in-out infinite;
+}
+
+@keyframes spectrumShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.spectrum-text {
+  background: linear-gradient(135deg, #ff0096, #00ffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+
+
+/* Mugen Custom Cursor */
+.mugen-cursor-pointer {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="none" stroke="white" stroke-width="1" opacity="0.7"/></svg>'), auto;
+}
