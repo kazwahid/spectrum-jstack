@@ -1,0 +1,5 @@
+[33m0b62f2d[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m Remove DEPLOYMENT.md file
+[33m573bc68[m Fix TypeScript errors for Vercel deployment
+[33m0eb9435[m[33m ([m[1;31morigin/main[m[33m)[m Fix all Framer Motion ease TypeScript errors across all components
+[33m4a79ad9[m Fix TypeScript errors - Framer Motion ease and Next.js config
+[33mb88e7a5[m Fix Vercel deployment issues - update Hono config and environment handling
