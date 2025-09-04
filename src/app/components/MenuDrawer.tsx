@@ -103,7 +103,7 @@ const MenuDrawer = ({ isOpen, onClose }: MenuDrawerProps) => {
             exit="exit"
             transition={{
               duration: 0.4,
-              ease: [0.25, 0.46, 0.45, 0.94]
+              ease: "easeOut"
             }}
             className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
             onClick={onClose}
@@ -196,7 +196,7 @@ const MenuDrawer = ({ isOpen, onClose }: MenuDrawerProps) => {
                         transition: { 
                           delay: 0.5, 
                           duration: 0.3,
-                          ease: [0.25, 0.46, 0.45, 0.94]
+                          ease: "easeOut"
                         }
                       }}
                     />
@@ -208,7 +208,7 @@ const MenuDrawer = ({ isOpen, onClose }: MenuDrawerProps) => {
                         transition: { 
                           delay: 0.5, 
                           duration: 0.2,
-                          ease: [0.25, 0.46, 0.45, 0.94]
+                          ease: "easeOut"
                         }
                       }}
                     />
@@ -220,7 +220,7 @@ const MenuDrawer = ({ isOpen, onClose }: MenuDrawerProps) => {
                         transition: { 
                           delay: 0.5, 
                           duration: 0.3,
-                          ease: [0.25, 0.46, 0.45, 0.94]
+                          ease: "easeOut"
                         }
                       }}
                     />
