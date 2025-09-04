@@ -15,7 +15,12 @@ export const j = jstack.init<Env>()
  * @see https://jstack.app/docs/backend/middleware
  */
 const databaseMiddleware = j.middleware(async ({ c, next }) => {
-  const { DATABASE_URL } = env(c)
+  // Try to get DATABASE_URL from environment variables
+  const DATABASE_URL = process.env.DATABASE_URL || env(c).DATABASE_URL
+
+  if (!DATABASE_URL) {
+    throw new Error("DATABASE_URL environment variable is not set")
+  }
 
   const sql = neon(DATABASE_URL)
   const db = drizzle(sql)
