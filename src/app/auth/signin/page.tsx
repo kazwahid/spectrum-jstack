@@ -3,8 +3,9 @@
 import { useSearchParams } from "next/navigation"
 import { signIn } from "next-auth/react"
 import Link from "next/link"
+import { Suspense } from "react"
 
-export default function SignInPage() {
+function SignInForm() {
   const searchParams = useSearchParams()
   const error = searchParams.get('error')
 
@@ -62,6 +63,23 @@ export default function SignInPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function SignInPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-black text-white flex items-center justify-center p-4">
+        <div className="max-w-md w-full">
+          <div className="bg-gray-900/50 border border-gray-700 rounded-lg p-8">
+            <h1 className="text-2xl font-bold mb-6 text-center">Sign In</h1>
+            <div className="text-center text-gray-400">Loading...</div>
+          </div>
+        </div>
+      </div>
+    }>
+      <SignInForm />
+    </Suspense>
   )
 }
 

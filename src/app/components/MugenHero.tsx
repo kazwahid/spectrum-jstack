@@ -50,7 +50,7 @@ const MugenHero = () => {
                 <motion.div
                   initial={{ opacity: 0, y: 100 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1.4, ease: "easeOut" }}
+                  transition={{ duration: 1.4, ease: [0.25, 0.46, 0.45, 0.94] }}
                   className="relative group"
                   style={{
                     transform: `translate(${mousePosition.x * 0.002}px, ${mousePosition.y * 0.002}px)`
@@ -100,7 +100,7 @@ const MugenHero = () => {
               <motion.div
                 initial={{ opacity: 0, x: 80 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1.2, delay: 0.8, ease: "easeOut" }}
+                transition={{ duration: 1.2, delay: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
                 className="w-full space-y-6"
                 style={{
                   transform: `translate(${mousePosition.x * -0.003}px, ${mousePosition.y * -0.003}px)`

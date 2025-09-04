@@ -15,7 +15,12 @@ export const metadata: Metadata = {
     { rel: "apple-touch-icon", url: "/favicon-192x192.png" }
   ],
   manifest: "/site.webmanifest",
-  viewport: "width=device-width, initial-scale=1, maximum-scale=1",
+}
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
 }
 
 export default function RootLayout({
